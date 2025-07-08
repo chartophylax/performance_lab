@@ -1,18 +1,29 @@
 ﻿import os
 import json
-os.chdir(os.path.dirname(__file__))  # Меняем директорию
+import sys
 
-while True:
-    file1 = input("Пожалуйста, введите имя файла с тестами: ")
-    if os.path.exists(file1):
-         break
-    print("Файл", file1, "отсутствует. Введите имя файла заново")
+if len(sys.argv) < 3:
+    print("Нужно передать два аргумента.")
+    input("Заверешние. Нажмите Enter для выхода...")
+    sys.exit()
 
-while True:
-    file2 = input("Пожалуйста, введите имя файла со значениями: ")
-    if os.path.exists(file2):
-         break
-    print("Файл", file2, "отсутствует. Введите имя файла заново")
+file1 = sys.argv[1]
+file2 = sys.argv[2]
+
+os.chdir(os.path.dirname(__file__))  # Меняем директорию на папку скрипта
+
+missing1 = not os.path.exists(file1)
+missing2 = not os.path.exists(file2)
+
+if missing1 or missing2:
+    if missing1 and missing2:
+        print(f"Ошибка. Файлы '{file1}' и '{file2}' отсутствуют.")
+    elif missing1:
+        print(f"Ошибка. Файл '{file1}' отсутствует.")
+    elif missing2:
+        print(f"Ошибка. Файл '{file2}' отсутствует.")
+    input("Заверешние. Нажмите Enter для выхода...")
+    sys.exit()
 
 
 # Загружаем первый JSON (основная структура)
