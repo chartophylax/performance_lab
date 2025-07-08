@@ -1,8 +1,29 @@
 import os
-os.chdir(os.path.dirname(__file__))  # Меняем директорию на ту, в который расположен файл 2.py
+import sys
 
-file1 = input("введите имя файла с данными об окружности: ")
-file2 = input("введите имя файла с данными о точках ")
+if len(sys.argv) < 3:
+    print("Нужно передать два аргумента.")
+    input("Заверешние. Нажмите Enter для выхода...")
+    sys.exit()
+
+file1 = sys.argv[1]
+file2 = sys.argv[2]
+
+os.chdir(os.path.dirname(__file__))  # Меняем директорию на папку скрипта
+
+missing1 = not os.path.exists(file1)
+missing2 = not os.path.exists(file2)
+
+if missing1 or missing2:
+    if missing1 and missing2:
+        print(f"Ошибка. Файлы '{file1}' и '{file2}' отсутствуют.")
+    elif missing1:
+        print(f"Ошибка. Файл '{file1}' отсутствует.")
+    elif missing2:
+        print(f"Ошибка. Файл '{file2}' отсутствует.")
+    input("Заверешние. Нажмите Enter для выхода...")
+    sys.exit()
+
 
 if os.path.exists(file1) and os.path.exists(file2):
     with open(file1, "r") as file:
