@@ -16,7 +16,7 @@ missing2 = not number.isnumeric()
 
 if missing1 or missing2:
     if missing1 and missing2:
-        print(f"Ошибка. {size} и {number} не являются числами.")
+        print(f"Ошибка. {size} и {number} не являются целыми неотрицательными  числами.")
     elif missing1:
         print(f"Ошибка. {size} не является числом.")
     elif missing2:
