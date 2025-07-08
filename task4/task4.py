@@ -2,14 +2,14 @@ import os
 import sys
 
 if len(sys.argv) < 2:
-    print("Ошибка: Нет парамтров")
+    print("Ошибка: Нет параметра")
     input("Нажмите Enter для выхода...")
     sys.exit()
 
 os.chdir(os.path.dirname(__file__))  # Меняем директорию
 file=sys.argv[1]
 
-if os.path.exists(file)==False:
+if not os.path.exists(file):
     print("Ошибка: файл", file, "отсутствует")
     input("Нажмите Enter для выхода...")
     sys.exit()
