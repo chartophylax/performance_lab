@@ -1,11 +1,19 @@
 import os
-os.chdir(os.path.dirname(__file__))  # Меняем директорию
+import sys
 
-while True:
-    file = input("Пожалуйста, введите имя файла с числами: ")
-    if os.path.exists(file):
-         break
-    print("Файл", file, "отсутствует. Введите имя файла заново")
+if len(sys.argv) < 2:
+    print("Ошибка: Нет парамтров")
+    input("Нажмите Enter для выхода...")
+    sys.exit()
+
+os.chdir(os.path.dirname(__file__))  # Меняем директорию
+file=sys.argv[1]
+
+if os.path.exists(file)==False:
+    print("Ошибка: файл", file, "отсутствует")
+    input("Нажмите Enter для выхода...")
+    sys.exit()
+
 
 nums = []
 with open(file, "r") as file:
